@@ -7,60 +7,57 @@
     </div>
     <div class="row align-items-start">
       <div class="col">
-        <horizontal-stepper :steps="uploadSteps" @completed-step="uploadStep"
-          @active-step="isStepActive" @stepper-finished="alert">
-        </horizontal-stepper>
+          <mdb-stepper simpleH :steps="steps" @input="nextStep"/>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+          <template v-if="1 === step"><platform></platform></template>
+          <template v-if="2 === step"><connect></connect></template>
+          <template v-if="3 === step"><upload></upload></template>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import HorizontalStepper from 'vue-stepper';
+import { mdbStepper } from 'mdbvue';
 import Platform from './Platform.vue';
+import Connect from './Connect.vue';
+import Upload from './Upload.vue';
 
 export default {
   name: 'Upload',
+  step: 1,
   components: {
-    HorizontalStepper,
+    mdbStepper,
+    Platform,
+    Connect,
+    Upload,
   },
   data() {
     return {
       header: 'ESP32 Firmware Uploader',
-      uploadSteps: [
+      steps: [
         {
-          icon: 'settings',
-          name: 'platform',
-          title: 'Platform',
-          subtitle: 'Select board and framework',
-          component: Platform,
-          completed: false,
+          name: 'Platform',
+          content: 'Select board and framework',
+        },
+        {
+          name: 'Connect',
+          content: 'Select device interface',
+        },
+        {
+          name: 'Upload',
+          content: 'Start device programming',
         },
       ],
-      activeStep: 0,
     };
   },
   methods: {
-    // Executed when @completed-step event is triggered
-    uploadStep(payload) {
-      this.uploadSteps.forEach((step) => {
-        if (step.name === payload.name) {
-          step.completed = true; // eslint-disable-line no-param-reassign
-        }
-      });
-    },
-    // Executed when @active-step event is triggered
-    isStepActive(payload) {
-      this.uploadSteps.forEach((step) => {
-        if (step.name === payload.name) {
-          if (step.completed === true) {
-            step.completed = false; // eslint-disable-line no-param-reassign
-          }
-        }
-      });
-    },
-    alert(payload) { // eslint-disable-line no-unused-vars
-      alert('end');
+    nextStep(num) {
+      console.warn(num);
+      this.step = num;
     },
   },
 };
