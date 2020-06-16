@@ -5,16 +5,18 @@
         <h1>{{header}}</h1>
       </div>
     </div>
-    <div class="row align-items-start">
+    <div class="row align-items-center">
       <div class="col">
-          <mdb-stepper simpleH :steps="steps" @input="nextStep"/>
+          <mdb-stepper simpleH :steps="steps" @input="nextStep" :value="step" />
       </div>
     </div>
     <div class="row align-items-center">
       <div class="col">
-          <template v-if="1 === step"><platform></platform></template>
-          <template v-if="2 === step"><connect></connect></template>
-          <template v-if="3 === step"><upload></upload></template>
+        <transition enter-active-class="animated slideInLeft">
+          <platform v-if="1 === step"></platform>
+          <connect  v-else-if="2 === step"></connect>
+          <upload   v-else-if="3 === step"></upload>
+        </transition>
       </div>
     </div>
   </div>
@@ -27,8 +29,7 @@ import Connect from './Connect.vue';
 import Upload from './Upload.vue';
 
 export default {
-  name: 'Upload',
-  step: 1,
+  name: 'Uploader',
   components: {
     mdbStepper,
     Platform,
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       header: 'ESP32 Firmware Uploader',
+      step: 1,
       steps: [
         {
           name: 'Platform',
@@ -49,14 +51,13 @@ export default {
         },
         {
           name: 'Upload',
-          content: 'Start device programming',
+          content: 'Device programming',
         },
       ],
     };
   },
   methods: {
     nextStep(num) {
-      console.warn(num);
       this.step = num;
     },
   },
