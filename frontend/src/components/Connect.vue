@@ -6,12 +6,12 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button"
                         id="dropdownMenuBoard" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        Select Board
+                        Connection port
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuBoard">
-                        <a class="dropdown-item" href="#">ESP32-WROOM</a>
-                        <a class="dropdown-item" href="#">ESP32-CAM</a>
-                        <a class="dropdown-item" href="#">Heletec ESP32s</a>
+                        <a class="dropdown-item" href="#">/dev/ttyUSB0</a>
+                        <a class="dropdown-item" href="#">/dev/ttyACM0</a>
+                        <a class="dropdown-item" href="#">/dev/ttyS0</a>
                     </div>
                 </div>
             </div>
