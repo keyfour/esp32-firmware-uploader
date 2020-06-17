@@ -2,32 +2,47 @@
     <div class="container">
         <div class="row align-item-start">
             <div class="col">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                        id="dropdownMenuBoard" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Select Board
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuBoard">
-                        <a class="dropdown-item" href="#">ESP32-WROOM</a>
-                        <a class="dropdown-item" href="#">ESP32-CAM</a>
-                        <a class="dropdown-item" href="#">Heletec ESP32s</a>
-                    </div>
-                </div>
+                <mdb-dropdown>
+                    <mdb-dropdown-toggle slot="toggle">Select Board</mdb-dropdown-toggle>
+                    <mdb-dropdown-menu>
+                        <mdb-dropdown-item>ESP32-WROOM</mdb-dropdown-item>
+                        <mdb-dropdown-item>ESP32-CAM</mdb-dropdown-item>
+                        <mdb-dropdown-item>Heletec ESP32s</mdb-dropdown-item>
+                    </mdb-dropdown-menu>
+                </mdb-dropdown>
             </div>
             <div class="col">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                        id="dropdownMenuFramework" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Select Framework
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuFramework">
-                        <a class="dropdown-item" href="#">Arduino</a>
-                        <a class="dropdown-item" href="#">ESP-IDF</a>
-                    </div>
-                </div>
+                <mdb-dropdown>
+                    <mdb-dropdown-toggle slot="toggle">Select Framework</mdb-dropdown-toggle>
+                    <mdb-dropdown-menu>
+                        <mdb-dropdown-item>Arduino</mdb-dropdown-item>
+                        <mdb-dropdown-item>ESP-IDF</mdb-dropdown-item>
+                    </mdb-dropdown-menu>
+                </mdb-dropdown>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import {
+  mdbDropdown,
+  mdbDropdownToggle,
+  mdbDropdownMenu,
+  mdbDropdownItem,
+} from 'mdbvue';
+
+export default {
+  components: {
+    mdbDropdown,
+    mdbDropdownToggle,
+    mdbDropdownMenu,
+    mdbDropdownItem,
+  },
+  data() {
+    return {
+      foo: 'foo',
+    };
+  },
+};
+</script>

@@ -2,19 +2,33 @@
     <div class="container">
         <div class="row align-item-start">
             <div class="col">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                        id="dropdownMenuBoard" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Connection port
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuBoard">
-                        <a class="dropdown-item" href="#">/dev/ttyUSB0</a>
-                        <a class="dropdown-item" href="#">/dev/ttyACM0</a>
-                        <a class="dropdown-item" href="#">/dev/ttyS0</a>
-                    </div>
-                </div>
+                <mdb-dropdown>
+                    <mdb-dropdown-toggle slot="toggle">Connection port</mdb-dropdown-toggle>
+                    <mdb-dropdown-menu>
+                        <mdb-dropdown-item>/dev/ttyUSB0</mdb-dropdown-item>
+                        <mdb-dropdown-item>/dev/ttyACM0</mdb-dropdown-item>
+                        <mdb-dropdown-item>/dev/ttyS0</mdb-dropdown-item>
+                    </mdb-dropdown-menu>
+                </mdb-dropdown>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import {
+  mdbDropdown,
+  mdbDropdownToggle,
+  mdbDropdownMenu,
+  mdbDropdownItem,
+} from 'mdbvue';
+
+export default {
+  components: {
+    mdbDropdown,
+    mdbDropdownToggle,
+    mdbDropdownMenu,
+    mdbDropdownItem,
+  },
+};
+</script>
