@@ -2,10 +2,7 @@
   <mdb-container>
     <mdb-row>
       <mdb-col>
-        <uploader-dropdown default="Board" v-bind:items="boards"/>
-      </mdb-col>
-      <mdb-col>
-        <uploader-dropdown default="Framework" v-bind:items="frameworks"/>
+        <mdb-btn color="success">{{name}}</mdb-btn>
       </mdb-col>
     </mdb-row>
   </mdb-container>
@@ -16,16 +13,17 @@ import {
   mdbContainer,
   mdbRow,
   mdbCol,
+  mdbBtn,
 } from 'mdbvue';
-import UploaderDropdown from './Dropdown.vue';
 
 export default {
+  name: 'UploaderButton',
   components: {
     mdbContainer,
     mdbRow,
     mdbCol,
-    UploaderDropdown,
+    mdbBtn,
   },
-  props: ['boards', 'frameworks'],
+  props: ['name'],
 };
 </script>
