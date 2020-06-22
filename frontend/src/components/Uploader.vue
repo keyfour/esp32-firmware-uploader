@@ -9,20 +9,22 @@
       <mdb-col>
         <transition enter-active-class="animated slideInLeft">
           <platform v-if="1 === step" v-bind:boards="boards"
-            v-bind:frameworks="frameworks"/>
+            v-bind:frameworks="frameworks" v-on:selected="enableNext"/>
           <connect  v-else-if="2 === step"></connect>
           <upload   v-else-if="3 === step"></upload>
         </transition>
       </mdb-col>
     </mdb-row>
-    <mdb-row>
+    <mdb-row style="pointer-events:none;">
       <mdb-col>
-          <mdb-stepper simpleH :steps="steps" @input="nextStep" :value="step" />
+        <mdb-stepper simpleH :steps="steps" @input="nextStep" :value="step" />
       </mdb-col>
     </mdb-row>
     <mdb-row>
       <mdb-col>
-        <uploader-button v-bind:name="buttonName"></uploader-button>
+        <uploader-button v-bind:name="buttonName" v-bind:active="buttonState"
+          v-on:click="nextStep(step + 1)">
+        </uploader-button>
       </mdb-col>
     </mdb-row>
   </mdb-container>
@@ -59,6 +61,7 @@ export default {
       header: '',
       buttonName: 'Next',
       buttonNames: ['Select', 'Open', 'Upload'],
+      buttonState: false,
       boards: [
         {
           id: 0,
@@ -103,9 +106,15 @@ export default {
   },
   methods: {
     nextStep(num) {
-      this.step = num;
-      this.header = this.headers[this.step - 1];
-      this.buttonName = this.buttonNames[this.step - 1];
+      if (num > 0 && num <= this.steps.length) {
+        this.step = num;
+        this.header = this.headers[this.step - 1];
+        this.buttonName = this.buttonNames[this.step - 1];
+        this.buttonState = false;
+      }
+    },
+    enableNext() {
+      this.buttonState = true;
     },
   },
   beforeMount() {

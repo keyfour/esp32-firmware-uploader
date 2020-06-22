@@ -2,7 +2,7 @@
   <mdb-container>
     <mdb-row>
       <mdb-col>
-        <mdb-btn color="success">{{name}}</mdb-btn>
+        <mdb-btn color="success" :disabled="!active" v-on:click="$emit('click')">{{name}}</mdb-btn>
       </mdb-col>
     </mdb-row>
   </mdb-container>
@@ -24,6 +24,11 @@ export default {
     mdbCol,
     mdbBtn,
   },
-  props: ['name'],
+  data() {
+    return {
+      state: 'disabled',
+    };
+  },
+  props: ['name', 'active'],
 };
 </script>

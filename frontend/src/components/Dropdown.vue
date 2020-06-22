@@ -1,9 +1,11 @@
 <template>
   <mdb-dropdown>
-    <mdb-dropdown-toggle slot="toggle">{{selected}}</mdb-dropdown-toggle>
+    <mdb-dropdown-toggle
+      slot="toggle">{{selected.name ? selected.name : selected}}
+    </mdb-dropdown-toggle>
     <mdb-dropdown-menu>
       <mdb-dropdown-item v-for="item in items"
-        v-bind:key="item.id" @click="selected = item.name">
+        v-bind:key="item.id"  v-on:click="selectItem(item)">
           {{ item.name }}
       </mdb-dropdown-item>
     </mdb-dropdown-menu>
@@ -26,20 +28,16 @@ export default {
     mdbDropdownMenu,
     mdbDropdownItem,
   },
-  data() {
-    return {
-      selected: '',
-    };
-  },
-  props: ['default', 'items'],
+  props: ['selected', 'items'],
   methods: {
     selectItem(item) {
-      this.selected = item.name;
-      this.$emit('selected');
+      this.value = item.name;
+      this.$emit('change', item);
     },
   },
-  beforeMount() {
-    this.selectItem({ id: -1, name: this.default });
+  model: {
+    prop: 'selected',
+    event: 'change',
   },
 };
 </script>
