@@ -10,7 +10,8 @@
         <transition enter-active-class="animated slideInLeft">
           <platform v-if="1 === step" v-bind:boards="boards"
             v-bind:frameworks="frameworks" v-on:selected="enableNext"/>
-          <connect  v-else-if="2 === step"></connect>
+          <connect  v-else-if="2 === step" v-bind:ports="ports"
+            v-on:selected="enableNext"/>
           <upload   v-else-if="3 === step"></upload>
         </transition>
       </mdb-col>
@@ -88,6 +89,21 @@ export default {
         },
       ],
       frameworkID: undefined,
+      ports: [
+        {
+          id: 0,
+          name: '/dev/ttyUSB0',
+        },
+        {
+          id: 1,
+          name: '/dev/ttyACM0',
+        },
+        {
+          id: 2,
+          name: '/dev/ttyS0',
+        },
+      ],
+      portID: undefined,
       steps: [
         {
           name: 'Platform',

@@ -2,14 +2,8 @@
   <mdb-container>
     <mdb-row>
       <mdb-col>
-        <mdb-dropdown>
-          <mdb-dropdown-toggle slot="toggle">Connection port</mdb-dropdown-toggle>
-            <mdb-dropdown-menu>
-                <mdb-dropdown-item>/dev/ttyUSB0</mdb-dropdown-item>
-                <mdb-dropdown-item>/dev/ttyACM0</mdb-dropdown-item>
-                <mdb-dropdown-item>/dev/ttyS0</mdb-dropdown-item>
-            </mdb-dropdown-menu>
-        </mdb-dropdown>
+        <uploader-dropdown v-model="port" v-bind:items="ports"
+          v-on:change="$emit('selected', port)"/>
       </mdb-col>
     </mdb-row>
   </mdb-container>
@@ -20,21 +14,21 @@ import {
   mdbContainer,
   mdbRow,
   mdbCol,
-  mdbDropdown,
-  mdbDropdownToggle,
-  mdbDropdownMenu,
-  mdbDropdownItem,
 } from 'mdbvue';
+import UploaderDropdown from './Dropdown.vue';
 
 export default {
   components: {
     mdbContainer,
     mdbRow,
     mdbCol,
-    mdbDropdown,
-    mdbDropdownToggle,
-    mdbDropdownMenu,
-    mdbDropdownItem,
+    UploaderDropdown,
   },
+  data() {
+    return {
+      port: 'Connection port',
+    };
+  },
+  props: ['ports'],
 };
 </script>
