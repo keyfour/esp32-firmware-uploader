@@ -12,7 +12,7 @@
             v-bind:frameworks="frameworks" v-on:selected="enableNext"/>
           <connect  v-else-if="2 === step" v-bind:ports="ports"
             v-on:selected="enableNext"/>
-          <upload   v-else-if="3 === step"></upload>
+          <upload v-else-if="3 === step" v-on:changed="enableNext"></upload>
         </transition>
       </mdb-col>
     </mdb-row>

@@ -2,7 +2,14 @@
   <mdb-container>
     <mdb-row>
       <mdb-col>
-        <mdb-btn color="success">Start</mdb-btn>
+        <b-form-file
+          multiple
+          v-model="files"
+          :state="null"
+          placeholder="Choose a file or drop it here..."
+          drop-placeholder="Drop file here..."
+          v-on:input="uploadFiles"
+         ></b-form-file>
       </mdb-col>
     </mdb-row>
   </mdb-container>
@@ -13,7 +20,6 @@ import {
   mdbContainer,
   mdbRow,
   mdbCol,
-  mdbBtn,
 } from 'mdbvue';
 
 export default {
@@ -22,7 +28,16 @@ export default {
     mdbContainer,
     mdbRow,
     mdbCol,
-    mdbBtn,
+  },
+  data() {
+    return {
+      files: [],
+    };
+  },
+  methods: {
+    uploadFiles() {
+      this.$emit('changed', this.files);
+    },
   },
 };
 </script>
