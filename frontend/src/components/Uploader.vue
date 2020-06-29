@@ -1,12 +1,12 @@
 <template>
-  <mdb-container>
-    <mdb-row>
-      <mdb-col>
+  <mdb-container fluid>
+    <mdb-row class="pt-5">
+      <mdb-col md="8" offsetMd="2">
           <h1>{{header}}</h1>
       </mdb-col>
     </mdb-row>
-    <mdb-row>
-      <mdb-col>
+    <mdb-row class="pt-3">
+      <mdb-col md="8" offsetMd="2">
         <transition enter-active-class="animated slideInLeft">
           <platform v-if="1 === step" v-bind:boards="boards"
             v-bind:frameworks="frameworks" v-on:selected="enableNext"/>
@@ -16,12 +16,12 @@
         </transition>
       </mdb-col>
     </mdb-row>
-    <mdb-row style="pointer-events:none;">
-      <mdb-col>
+    <mdb-row style="pointer-events:none;" class="justify-content-center">
+      <mdb-col md="6" offsetMd="1">
         <mdb-stepper simpleH :steps="steps" @input="nextStep" :value="step" />
       </mdb-col>
     </mdb-row>
-    <mdb-row>
+    <mdb-row class="pb-5">
       <mdb-col>
         <uploader-button v-bind:name="buttonName" v-bind:active="buttonState"
           v-on:click="nextStep(step + 1)">
