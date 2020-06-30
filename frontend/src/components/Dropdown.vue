@@ -1,5 +1,5 @@
 <template>
-  <mdb-dropdown>
+  <mdb-dropdown style="background-color:#6d6d6d">
     <mdb-dropdown-toggle
       slot="toggle">{{selected.name ? selected.name : selected}}
     </mdb-dropdown-toggle>
