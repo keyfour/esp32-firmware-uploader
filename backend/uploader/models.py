@@ -8,6 +8,9 @@ class ESP32FirmwareUploader:
         self.framework = None
         self.port = None
         self.files = None
+        self.boards_list = []
+        self.frameworks_list = []
+        self.ports_list = []
 
     def from_storage(self, method):
         result = None
@@ -17,16 +20,19 @@ class ESP32FirmwareUploader:
         return result
 
     def boards(self):
-        return self.from_storage("boards")
+        if len(self.boards_list) == 0:
+            self.boards_list = self.from_storage("boards")
+        return self.boards_list
 
     def frameworks(self):
-        return self.from_storage("frameworks")
+        if len(self.frameworks_list) == 0:
+            self.frameworks_list = self.from_storage("frameworks")
+        return self.frameworks_list
 
     def ports(self):
-        available_ports = None
         if self.connector is not None:
-            available_ports = self.connector.ports()
-        return available_ports
+            self.ports_list = self.connector.ports()
+        return self.ports_list
 
     def select(self, board, framework):
         if self.boards() is not None and \
