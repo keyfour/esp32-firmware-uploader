@@ -7,7 +7,8 @@ class TestConnectorMethods(unittest.TestCase):
     self.connector = SerialConnector()
 
   def test_ports_returns_list(self):
-    self.assertTrue(isinstance(self.connector.ports(), list))
+    ports = self.connector.ports()
+    self.assertTrue(isinstance(ports, list))
 
 
 if __name__ == "__main__":
