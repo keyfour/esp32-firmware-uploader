@@ -4,5 +4,18 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "python.pythonPath": "backend/.venv/bin/python"
+  "python.pythonPath": "backend/.venv/bin/python",
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./tests",
+    "-p",
+    "*_test.py",
+    "-t",
+    "./backend/"
+  ],
+  "python.testing.pytestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.unittestEnabled": true,
+  "python.testing.autoTestDiscoverOnSaveEnabled": true
 }
