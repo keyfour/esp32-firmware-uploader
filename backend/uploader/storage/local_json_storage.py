@@ -8,11 +8,14 @@ class LocalJsonStorage(Storage):
     self.frameworks_file = path + "/frameworks.json"
 
   def parse_file(self, path):
-    result = []
+    result = {}
     with open(path) as file:
       data = file.read()
     if len(data) > 0:
-      result = json.loads(data)
+      try:
+        result = json.loads(data)
+      except json.decoder.JSONDecodeError:
+        pass
     return result
 
   def boards(self):
