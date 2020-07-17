@@ -14,7 +14,7 @@ class ESP32FirmwareUploader:
 
     def from_storage(self, method):
         result = None
-        if self.storage() is not None:
+        if self.storage is not None:
             getter = getattr(self.storage, method)
             result = getter()
         return result
