@@ -20,3 +20,7 @@ def boards():
 @app.route('/frameworks')
 def frameworks():
   return jsonify(model.frameworks())
+
+@app.route('/ports')
+def ports():
+  return jsonify(model.ports())
