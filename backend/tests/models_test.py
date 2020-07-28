@@ -87,7 +87,7 @@ class TestModelsMethods(unittest.TestCase):
     ports = self.model.ports()
     self.compare_lists(ports, [])
 
-  def tets_boards_return(self):
+  def test_boards_return(self):
     self.storage.is_empty = False
     boards = self.model.boards()
     self.compare_lists(boards, BOARDS, self.list_keys)
