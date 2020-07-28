@@ -107,6 +107,19 @@ class TestModelsMethods(unittest.TestCase):
     frameworks = self.model.frameworks()
     self.compare_lists(frameworks, [])
 
+  def test_select(self):
+    self.storage.is_empty = False
+    for board in BOARDS:
+      for framework in FRAMEWORKS:
+        self.assertTrue(self.model.select(board['id'], framework['id']))
+        self.assertEqual(self.model.board, board)
+
+  def test_select_if_not_found(self):
+    self.storage.is_empty = True
+    for board in BOARDS:
+      for framework in FRAMEWORKS:
+        self.assertFalse(self.model.select(board['id'], framework['id']))
+
 
   def compare_lists(self, list0, list1, keys=[]):
     self.assertTrue(isinstance(list0, list))

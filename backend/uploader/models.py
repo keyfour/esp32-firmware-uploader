@@ -1,3 +1,4 @@
+from operator import itemgetter, methodcaller
 
 class ESP32FirmwareUploader:
 
@@ -34,19 +35,28 @@ class ESP32FirmwareUploader:
             self.ports_list = self.connector.ports()
         return self.ports_list
 
-    def select(self, board, framework):
-        if self.boards() is not None and \
-          board in self.boards():
-            self.board = board
-        if self.frameworks() is not None and \
-          framework in self.frameworks():
-            self.framework = framework
+    def select(self, board_id, framework_id):
+        indexes, boards = self.get_items(self.boards)
+        if boards is not None and board_id in indexes:
+            self.board = boards[indexes.index(board_id)]
+        indexes, frameworks = self.get_items(self.frameworks)
+        if frameworks is not None and framework_id in indexes:
+            self.framework = frameworks[indexes.index(framework_id)]
 
         result = False
         if self.board is not None and \
           self.framework is not None:
             result = True
         return result
+
+    def get_items(self, method):
+        items = method()
+        indexes = self.indexes(items)
+        return indexes, items
+
+    def indexes(self, items):
+        index = itemgetter('id')
+        return list(map(index, items))
 
     def open(self, port):
         result = False
